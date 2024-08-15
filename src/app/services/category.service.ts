@@ -7,7 +7,7 @@ import { Category } from '../models';
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiUrl = 'http://localhost:4200/admin/categories';
+  private apiUrl = 'http://localhost:5000/admin/categories';
 
   constructor(private http: HttpClient) {}
 

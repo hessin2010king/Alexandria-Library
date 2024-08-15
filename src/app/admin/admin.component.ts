@@ -1,35 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { CategoryService } from '../services/category.service';
 import { AuthorService } from '../services/author.service';
 import { BookService } from '../services/book.service';
-import { Category, Author, Book } from '../models'; 
 import { AuthService } from '../services/auth.service';
+
+import { Category, Author, Book } from '../models';
+import { EditModalComponent } from '../shared/edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  imports: [CommonModule] // Add CommonModule to imports
-
+  imports: [CommonModule, FormsModule, EditModalComponent]
 })
 export class AdminComponent implements OnInit {
   categories: Category[] = [];
   authors: Author[] = [];
   books: Book[] = [];
 
-  newCategoryName: string = '';
-  newAuthor: Author = { id: 0, photo: '', firstName: '', lastName: '', dateOfBirth: '' };
-  newBook: Book = { id: 0, photo: '', name: '', categoryId: 0, authorId: 0 };
-
   constructor(
     private categoryService: CategoryService,
     private authorService: AuthorService,
     private bookService: BookService,
-    private authService: AuthService, // Add this line
-
+    private authService: AuthService,
+    private modalService: NgbModal,
     private router: Router
   ) {}
 
@@ -37,11 +37,6 @@ export class AdminComponent implements OnInit {
     this.loadCategories();
     this.loadAuthors();
     this.loadBooks();
-  }
-
-  private handleError(error: any) {
-    console.error('An error occurred:', error);
-    alert('An error occurred. Please try again later.');
   }
 
   loadCategories() {
@@ -66,25 +61,93 @@ export class AdminComponent implements OnInit {
   }
 
   addCategory() {
-    if (this.newCategoryName.trim()) {
-      this.categoryService.addCategory(this.newCategoryName).subscribe(
-        () => {
-          this.newCategoryName = '';
-          this.loadCategories();
-        },
-        (error) => this.handleError(error)
-      );
-    }
+    const newCategory: Category = { id: 0, name: '' };
+    this.editCategory(newCategory);
   }
 
-  editCategory(id: number) {
-    const newName = prompt('Enter new name:');
-    if (newName?.trim()) {
-      this.categoryService.updateCategory(id, newName).subscribe(
-        () => this.loadCategories(),
-        (error) => this.handleError(error)
-      );
-    }
+  addAuthor() {
+    const newAuthor: Author = { id: 0, photo: '', firstName: '', lastName: '', dateOfBirth: '' };
+    this.editAuthor(newAuthor);
+  }
+
+  addBook() {
+    const newBook: Book = { id: 0, photo: '', name: '', categoryId: 0, authorId: 0 };
+    this.editBook(newBook);
+  }
+
+  editCategory(category: Category) {
+    const modalRef = this.modalService.open(EditModalComponent);
+    modalRef.componentInstance.item = { ...category };
+    modalRef.componentInstance.fields = ['name'];
+    modalRef.componentInstance.title = 'Edit Category';
+
+    modalRef.componentInstance.save.subscribe((updatedCategory: Category) => {
+      if (updatedCategory.id === 0) {
+        this.categoryService.addCategory(updatedCategory.name).subscribe(
+          () => this.loadCategories(),
+          (error) => this.handleError(error)
+        );
+      } else {
+        this.categoryService.updateCategory(updatedCategory.id, updatedCategory.name).subscribe(
+          () => this.loadCategories(),
+          (error) => this.handleError(error)
+        );
+      }
+    });
+
+    modalRef.componentInstance.close.subscribe(() => {
+      modalRef.close();
+    });
+  }
+
+  editAuthor(author: Author) {
+    const modalRef = this.modalService.open(EditModalComponent);
+    modalRef.componentInstance.item = { ...author };
+    modalRef.componentInstance.fields = ['photo', 'firstName', 'lastName', 'dateOfBirth'];
+    modalRef.componentInstance.title = 'Edit Author';
+
+    modalRef.componentInstance.save.subscribe((updatedAuthor: Author) => {
+      if (updatedAuthor.id === 0) {
+        this.authorService.addAuthor(updatedAuthor).subscribe(
+          () => this.loadAuthors(),
+          (error) => this.handleError(error)
+        );
+      } else {
+        this.authorService.updateAuthor(updatedAuthor.id, updatedAuthor).subscribe(
+          () => this.loadAuthors(),
+          (error) => this.handleError(error)
+        );
+      }
+    });
+
+    modalRef.componentInstance.close.subscribe(() => {
+      modalRef.close();
+    });
+  }
+
+  editBook(book: Book) {
+    const modalRef = this.modalService.open(EditModalComponent);
+    modalRef.componentInstance.item = { ...book };
+    modalRef.componentInstance.fields = ['photo', 'name', 'categoryId', 'authorId'];
+    modalRef.componentInstance.title = 'Edit Book';
+
+    modalRef.componentInstance.save.subscribe((updatedBook: Book) => {
+      if (updatedBook.id === 0) {
+        this.bookService.addBook(updatedBook).subscribe(
+          () => this.loadBooks(),
+          (error) => this.handleError(error)
+        );
+      } else {
+        this.bookService.updateBook(updatedBook.id, updatedBook).subscribe(
+          () => this.loadBooks(),
+          (error) => this.handleError(error)
+        );
+      }
+    });
+
+    modalRef.componentInstance.close.subscribe(() => {
+      modalRef.close();
+    });
   }
 
   deleteCategory(id: number) {
@@ -96,71 +159,12 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  addAuthor() {
-    if (this.newAuthor.firstName.trim() && this.newAuthor.lastName.trim() && this.newAuthor.dateOfBirth.trim()) {
-      this.authorService.addAuthor(this.newAuthor).subscribe(
-        () => {
-          this.newAuthor = { id: 0, photo: '', firstName: '', lastName: '', dateOfBirth: '' };
-          this.loadAuthors();
-        },
-        (error) => this.handleError(error)
-      );
-    }
-  }
-
-  editAuthor(id: number) {
-    const updatedAuthor: Author = {
-      id,
-      photo: prompt('Enter new photo URL:', '') || '',
-      firstName: prompt('Enter new first name:', '') || '',
-      lastName: prompt('Enter new last name:', '') || '',
-      dateOfBirth: prompt('Enter new date of birth:', '') || ''
-    };
-    if (updatedAuthor.firstName && updatedAuthor.lastName && updatedAuthor.dateOfBirth) {
-      this.authorService.updateAuthor(id, updatedAuthor).subscribe(
-        () => this.loadAuthors(),
-        (error) => this.handleError(error)
-      );
-    }
-  }
-
   deleteAuthor(id: number) {
     if (confirm('Are you sure you want to delete this author?')) {
       this.authorService.deleteAuthor(id).subscribe(
         () => this.loadAuthors(),
         (error) => this.handleError(error)
       );
-    }
-  }
-
-  addBook() {
-    if (this.newBook.name.trim() && this.newBook.categoryId && this.newBook.authorId) {
-      this.bookService.addBook(this.newBook).subscribe(
-        () => {
-          this.newBook = { id: 0, photo: '', name: '', categoryId: 0, authorId: 0 };
-          this.loadBooks();
-        },
-        (error) => this.handleError(error)
-      );
-    }
-  }
-
-  editBook(id: number) {
-    const updatedBook: Partial<Book> = {
-      id,
-      photo: prompt('Enter new photo URL:', '') || '',
-      name: prompt('Enter new name:', '') || '',
-      categoryId: Number(prompt('Enter new category ID:', '')),
-      authorId: Number(prompt('Enter new author ID:', ''))
-    };
-  
-    if (updatedBook.name && updatedBook.categoryId && updatedBook.authorId) {
-      this.bookService.updateBook(id, updatedBook).subscribe(
-        () => this.loadBooks(),
-        (error) => this.handleError(error)
-      );
-    } else {
-      alert('Invalid input. Please check your data.');
     }
   }
 
@@ -176,6 +180,11 @@ export class AdminComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred:', error);
+    alert('An error occurred. Please try again later.');
   }
 
   getCategoryNameById(categoryId: number): string | undefined {

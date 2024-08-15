@@ -1,0 +1,183 @@
+<div class="container mt-4">
+  <button (click)="logout()" class="btn btn-danger float-end">Logout</button>
+  <!-- Tab Navigation -->
+  <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link active"
+        id="categories-tab"
+        data-bs-toggle="tab"
+        href="#categories"
+        role="tab"
+        aria-controls="categories"
+        aria-selected="true"
+        >Categories</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="authors-tab"
+        data-bs-toggle="tab"
+        href="#authors"
+        role="tab"
+        aria-controls="authors"
+        aria-selected="false"
+        >Authors</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="books-tab"
+        data-bs-toggle="tab"
+        href="#books"
+        role="tab"
+        aria-controls="books"
+        aria-selected="false"
+        >Books</a
+      >
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content mt-4" id="adminTabContent">
+    <!-- Categories Tab -->
+    <div
+      class="tab-pane fade show active"
+      id="categories"
+      role="tabpanel"
+      aria-labelledby="categories-tab"
+    >
+      <h3>Categories</h3>
+      <button (click)="addCategory()" class="btn btn-primary mb-3">
+        + Add Category
+      </button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories">
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>
+              <button
+                (click)="editCategory(category.id)"
+                class="btn btn-warning btn-sm"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteCategory(category.id)"
+                class="btn btn-danger btn-sm"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Authors Tab -->
+    <div
+      class="tab-pane fade"
+      id="authors"
+      role="tabpanel"
+      aria-labelledby="authors-tab"
+    >
+      <h3>Authors</h3>
+      <button (click)="addAuthor()" class="btn btn-primary mb-3">
+        + Add Author
+      </button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Photo</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let author of authors">
+            <td>{{ author.id }}</td>
+            <td><img [src]="author.photo" alt="Author Photo" width="50" /></td>
+            <td>{{ author.firstName }}</td>
+            <td>{{ author.lastName }}</td>
+            <td>{{ author.dateOfBirth }}</td>
+            <td>
+              <button
+                (click)="editAuthor(author.id)"
+                class="btn btn-warning btn-sm"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteAuthor(author.id)"
+                class="btn btn-danger btn-sm"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Books Tab -->
+    <div
+      class="tab-pane fade"
+      id="books"
+      role="tabpanel"
+      aria-labelledby="books-tab"
+    >
+      <h3>Books</h3>
+      <button (click)="addBook()" class="btn btn-primary mb-3">
+        + Add Book
+      </button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{ book.id }}</td>
+            <td><img [src]="book.photo" alt="Book Photo" width="50" /></td>
+            <td>{{ book.name }}</td>
+            <td>{{ getCategoryNameById(book.categoryId) }}</td>
+            <td>{{ getAuthorNameById(book.authorId) }}</td>
+            <td>
+              <button
+                (click)="editBook(book.id)"
+                class="btn btn-warning btn-sm"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteBook(book.id)"
+                class="btn btn-danger btn-sm"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

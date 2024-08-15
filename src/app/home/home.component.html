@@ -1,0 +1,74 @@
+<header>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/about">About Us</a>
+    <a routerLink="/categories">Categories</a>
+    <a routerLink="/authors">Authors</a>
+    <a routerLink="/terms">Terms & Conditions</a>
+    <input type="text" placeholder="Enter Your Username">
+    <input type="password" placeholder="Enter Your Password">
+    <button>Log In</button>
+  </nav>
+</header>
+
+<main>
+  <h1>Welcome To Good Reads</h1>
+
+  <section class="popular">
+    <div class="authors">
+      <h2>Popular Authors</h2>
+      <!-- Add *ngFor loop here to display authors dynamically -->
+    </div>
+    <div class="books">
+      <h2>Popular Books</h2>
+      <!-- Add *ngFor loop here to display books dynamically -->
+    </div>
+    <div class="categories">
+      <h2>Popular Categories</h2>
+      <!-- Add *ngFor loop here to display categories dynamically -->
+    </div>
+  </section>
+  <section class="popular">
+    <div class="authors">
+      <h2>Popular Authors</h2>
+      <ul>
+        <li *ngFor="let author of authors">{{ author.name }}</li>
+      </ul>
+    </div>
+    <div class="books">
+      <h2>Popular Books</h2>
+      <ul>
+        <li *ngFor="let book of books">{{ book.title }}</li>
+      </ul>
+    </div>
+    <div class="categories">
+      <h2>Popular Categories</h2>
+      <ul>
+        <li *ngFor="let category of categories">{{ category.name }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <aside>
+    <h2>New here? Create a free account!</h2>
+    <form>
+      <input type="text" placeholder="Enter Your First Name">
+      <input type="text" placeholder="Enter Your Last Name">
+      <input type="email" placeholder="Enter Your Email">
+      <input type="password" placeholder="Enter Your Password">
+      <input type="password" placeholder="Retype Password">
+      <input type="file" placeholder="Upload your image">
+      <button type="submit">Signup</button>
+    </form>
+  </aside>
+</main>
+
+<footer>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/about">About Us</a>
+    <a routerLink="/categories">Categories</a>
+    <a routerLink="/authors">Authors</a>
+    <a routerLink="/terms">Terms & Conditions</a>
+  </nav>
+</footer>

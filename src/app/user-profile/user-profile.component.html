@@ -1,0 +1,28 @@
+<header>
+  <h1>User Profile</h1>
+</header>
+
+<main>
+  <section class="profile-info">
+    <h2>Profile Information</h2>
+    <!-- Add user profile information here -->
+  </section>
+
+  <section class="tabs-section">
+    <div class="tabs">
+      <button (click)="setTab('books-list')" [class.active]="currentTab === 'books-list'">Books List</button>
+      <button (click)="setTab('read-list')" [class.active]="currentTab === 'read-list'">Read List</button>
+      <button (click)="setTab('currently-reading')" [class.active]="currentTab === 'currently-reading'">Currently Reading</button>
+      <button (click)="setTab('categories')" [class.active]="currentTab === 'categories'">Categories</button>
+      <button (click)="setTab('category-details')" [class.active]="currentTab === 'category-details'">Category Details</button>
+    </div>
+
+    <div class="tab-content">
+      <app-books-list *ngIf="currentTab === 'books-list'"></app-books-list>
+      <app-read-list *ngIf="currentTab === 'read-list'"></app-read-list>
+      <app-currently-reading *ngIf="currentTab === 'currently-reading'"></app-currently-reading>
+      <app-categories *ngIf="currentTab === 'categories'"></app-categories>
+      <app-category-details *ngIf="currentTab === 'category-details'"></app-category-details>
+    </div>
+  </section>
+</main>

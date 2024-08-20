@@ -1,12 +1,15 @@
 /* General Container */
 .container {
   width: 85%;
-  margin: 0 auto;
+  margin:  auto;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 /* Tab Navigation */
 .nav-tabs {
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid #000000;
 }
 
 .nav-link {
@@ -16,8 +19,9 @@
 }
 
 .nav-link.active {
-  background-color: #fff;
-  border-color: #dee2e6 #dee2e6 #fff;
+  color: white;
+  background-color: #333;
+  border-color: #333;
   border-bottom: 2px solid #007bff; /* Active tab border color */
 }
 
@@ -28,10 +32,10 @@
 /* Tab Content */
 .tab-content {
   padding: 20px;
-  border: 1px solid #dee2e6;
+  border: 2px solid #000000;
   border-top: 0;
   border-radius: 0 0 4px 4px;
-  background-color: #fff;
+  background-color: #333;
 }
 
 .tab-pane {

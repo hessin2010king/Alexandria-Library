@@ -1,0 +1,25 @@
+footer nav {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: #333;
+  color: white;
+  margin-top: 20px;
+
+}
+
+footer nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+p{
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  background-color: #f8f9fa;
+  margin-bottom: -20px;
+}
+footer div nav{
+  border-radius: 10px 10px 0 0;
+}

@@ -28,6 +28,6 @@ export class CategoryService {
   }
 
   getPopularCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories/popular`);
+    return this.http.get<Category[]>(`${this.apiUrl}/popular`);
   }
 }

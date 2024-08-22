@@ -1,6 +1,6 @@
 <header>
   <nav>
-    <p>Aleardy Registerd?</p>
+    <p>Already Registered?</p>
     <input type="text" placeholder="Enter Your Username" />
     <input type="password" placeholder="Enter Your Password" />
     <button>Log In</button>
@@ -8,68 +8,56 @@
   <br />
   <h1>Welcome To Good Reads</h1>
 </header>
+
 <main>
   <section class="popular">
     <div class="popular-box">
       <div class="authors">
         <h2>Popular Authors</h2>
-        <!-- Add *ngFor loop here to display authors dynamically -->
+        <ul>
+          <li *ngFor="let author of authors">
+            {{ author.firstName }} {{ author.lastName }}
+          </li>
+        </ul>
       </div>
       <div class="books">
         <h2>Popular Books</h2>
-        <!-- Add *ngFor loop here to display books dynamically -->
+        <ul>
+          <li *ngFor="let book of books" >
+            {{ book.name }} 
+          </li>
+        </ul>
       </div>
       <div class="categories">
         <h2>Popular Categories</h2>
-        <!-- Add *ngFor loop here to display categories dynamically -->
+        <ul>
+          <li *ngFor="let category of categories">
+            {{ category.name }}
+          </li>
+        </ul>
       </div>
     </div>
-    <!-- <div class="tabs-list">
+    <!-- Uncomment and adjust tab functionality if needed -->
+    <!--
+    <div class="tabs-list">
       <div class="tabs">
-        <button
-          (click)="setTab('books-list')"
-          [class.active]="currentTab === 'books-list'"
-        >
-          Books List
-        </button>
-        <button
-          (click)="setTab('read-list')"
-          [class.active]="currentTab === 'read-list'"
-        >
-          Read List
-        </button>
-        <button
-          (click)="setTab('currently-reading')"
-          [class.active]="currentTab === 'currently-reading'"
-        >
-          Currently Reading
-        </button>
-        <button
-          (click)="setTab('categories')"
-          [class.active]="currentTab === 'categories'"
-        >
-          Categories
-        </button>
-        <button
-          (click)="setTab('category-details')"
-          [class.active]="currentTab === 'category-details'"
-        >
-          Category Details
-        </button>
+        <button (click)="setTab('books-list')" [class.active]="currentTab === 'books-list'">Books List</button>
+        <button (click)="setTab('read-list')" [class.active]="currentTab === 'read-list'">Read List</button>
+        <button (click)="setTab('currently-reading')" [class.active]="currentTab === 'currently-reading'">Currently Reading</button>
+        <button (click)="setTab('categories')" [class.active]="currentTab === 'categories'">Categories</button>
+        <button (click)="setTab('category-details')" [class.active]="currentTab === 'category-details'">Category Details</button>
       </div>
       <div class="tab-content">
         <app-books-list *ngIf="currentTab === 'books-list'"></app-books-list>
         <app-read-list *ngIf="currentTab === 'read-list'"></app-read-list>
-        <app-currently-reading
-          *ngIf="currentTab === 'currently-reading'"
-        ></app-currently-reading>
+        <app-currently-reading *ngIf="currentTab === 'currently-reading'"></app-currently-reading>
         <app-categories *ngIf="currentTab === 'categories'"></app-categories>
-        <app-category-details
-          *ngIf="currentTab === 'category-details'"
-        ></app-category-details>
+        <app-category-details *ngIf="currentTab === 'category-details'"></app-category-details>
       </div>
-    </div> -->
+    </div>
+    -->
   </section>
+
   <aside>
     <h2>New here? Create a free account!</h2>
     <form>
@@ -83,6 +71,8 @@
     </form>
   </aside>
 </main>
+
+<!-- Uncomment and adjust footer if needed -->
 <!--
 <footer>
   <nav>
@@ -92,4 +82,5 @@
     <a routerLink="/authors">Authors</a>
     <a routerLink="/terms">Terms & Conditions</a>
   </nav>
-</footer> -->
+</footer>
+-->

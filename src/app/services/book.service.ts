@@ -31,7 +31,7 @@ export class BookService {
   }
 
   getPopularBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.booksApiUrl}/books/popular`);
+    return this.http.get<Book[]>(`${this.booksApiUrl}/popular`);
   }
 
   getBooksWithDetails(): Observable<Book[]> {

@@ -28,6 +28,6 @@ export class AuthorService {
   }
 
   getPopularAuthors(): Observable<Author[]> {
-    return this.http.get<Author[]>(`${this.apiUrl}/authors/popular`);
+    return this.http.get<Author[]>(`${this.apiUrl}/popular`);
   }
 }

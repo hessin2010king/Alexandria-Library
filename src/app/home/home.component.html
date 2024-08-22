@@ -1,15 +1,25 @@
 <header>
-  <nav>
+  <nav *ngIf="!isLoggedIn">
     <p>Already Registered?</p>
-    <input type="text" placeholder="Enter Your Username" />
-    <input type="password" placeholder="Enter Your Password" />
-    <button>Log In</button>
+    <form (ngSubmit)="onLogin()">
+      <input type="text" [(ngModel)]="username" name="username" placeholder="Enter Your Username" required />
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Enter Your Password" required />
+      <button type="submit">Log In</button>
+    </form>
+   
+    
   </nav>
+  <div *ngIf="isLoggedIn">
+    <section>
+      <button (click)="navigateToProfile()">Profile</button>
+      <button (click)="logout()">Logout</button>
+    </section>
+  </div> 
   <br />
   <h1>Welcome To Good Reads</h1>
 </header>
 
-<main>
+<main >
   <section class="popular">
     <div class="popular-box">
       <div class="authors">
@@ -23,8 +33,8 @@
       <div class="books">
         <h2>Popular Books</h2>
         <ul>
-          <li *ngFor="let book of books" >
-            {{ book.name }} 
+          <li *ngFor="let book of books">
+            {{ book.name }}
           </li>
         </ul>
       </div>
@@ -37,28 +47,9 @@
         </ul>
       </div>
     </div>
-    <!-- Uncomment and adjust tab functionality if needed -->
-    <!--
-    <div class="tabs-list">
-      <div class="tabs">
-        <button (click)="setTab('books-list')" [class.active]="currentTab === 'books-list'">Books List</button>
-        <button (click)="setTab('read-list')" [class.active]="currentTab === 'read-list'">Read List</button>
-        <button (click)="setTab('currently-reading')" [class.active]="currentTab === 'currently-reading'">Currently Reading</button>
-        <button (click)="setTab('categories')" [class.active]="currentTab === 'categories'">Categories</button>
-        <button (click)="setTab('category-details')" [class.active]="currentTab === 'category-details'">Category Details</button>
-      </div>
-      <div class="tab-content">
-        <app-books-list *ngIf="currentTab === 'books-list'"></app-books-list>
-        <app-read-list *ngIf="currentTab === 'read-list'"></app-read-list>
-        <app-currently-reading *ngIf="currentTab === 'currently-reading'"></app-currently-reading>
-        <app-categories *ngIf="currentTab === 'categories'"></app-categories>
-        <app-category-details *ngIf="currentTab === 'category-details'"></app-category-details>
-      </div>
-    </div>
-    -->
   </section>
 
-  <aside>
+  <aside *ngIf="!isLoggedIn" >
     <h2>New here? Create a free account!</h2>
     <form>
       <input type="text" placeholder="Enter Your First Name" />
@@ -72,15 +63,3 @@
   </aside>
 </main>
 
-<!-- Uncomment and adjust footer if needed -->
-<!--
-<footer>
-  <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/about">About Us</a>
-    <a routerLink="/categories">Categories</a>
-    <a routerLink="/authors">Authors</a>
-    <a routerLink="/terms">Terms & Conditions</a>
-  </nav>
-</footer>
--->

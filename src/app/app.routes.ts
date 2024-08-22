@@ -8,7 +8,8 @@ import { AuthorsComponent } from './authors/authors.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { BooksComponent } from './books/books.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
-import {AuthorDetailsComponent} from './author-details/author-details.component' ;
+import { AuthorDetailsComponent } from './author-details/author-details.component';
+import { UserProfileComponent } from './user-profile/user-profile.component'; // Import UserProfileComponent
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,7 +19,7 @@ export const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'category-details/:id', component: CategoryDetailsComponent },
   { path: 'author-details/:id', component: AuthorDetailsComponent },
-
+  { path: 'user-profile', component: UserProfileComponent }, // Add route for UserProfileComponent
   { path: 'authors', component: AuthorsComponent },
   { path: 'books', component: BooksComponent },
   { path: 'terms-conditions', component: TermsConditionsComponent },

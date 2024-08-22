@@ -1,38 +1,36 @@
+header {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
 
+.profile-info {
+  padding: 20px;
+  background-color: #ffffff;
+}
 
 .tabs-section {
+  margin-top: 20px;
+}
+
+.tabs {
   display: flex;
-  min-width: 100vw;
-  min-height: 100vh;
+  background-color: #e9ecef;
 }
 
 .tabs button {
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #f0f0f0;
+  flex: 1;
+  padding: 10px;
   border: none;
-  border-bottom: 2px solid transparent;
+  background: none;
+  cursor: pointer;
 }
 
 .tabs button.active {
-  border-bottom: 2px solid #007BFF;
+  border-bottom: 2px solid #007bff;
 }
 
 .tab-content {
-    display: flex;
-  flex-direction: column;
   padding: 20px;
-  background-color: #2c2a2a;
-  border: 1px solid #ddd;
-  min-height: 30vh;
-  min-width: 100%;
-}
-.tabs{
-  display: flex;
-  min-width: 100% !important;
-}
-.tabs-list{
-  display: flex;
-  flex-direction: column;
-  min-width: 100% !important;
+  background-color: #ffffff;
 }

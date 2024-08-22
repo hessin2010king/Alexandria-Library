@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.adminlogin(this.username, this.password).subscribe(
+    this.authService.adminLogin(this.username, this.password).subscribe(
       (response: any) => {
         if (response.success && response.role === 'admin') {
           // Optionally store the user information if needed

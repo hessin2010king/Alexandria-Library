@@ -7,10 +7,10 @@ import { CategoryDetailsComponent } from '../category-details/category-details.c
 
 @Component({
   selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
   standalone: true,
-  imports: [BooksListComponent, ReadListComponent, CurrentlyReadingComponent, CategoriesComponent, CategoryDetailsComponent]
+  imports: [BooksListComponent, ReadListComponent, CurrentlyReadingComponent, CategoriesComponent, CategoryDetailsComponent],
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
   currentTab: string = 'books-list';  // Default tab

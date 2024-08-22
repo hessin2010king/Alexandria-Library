@@ -12,7 +12,7 @@ import {AuthorDetailsComponent} from './author-details/author-details.component'
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'admin-login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'about', component: AboutComponent },
   { path: 'categories', component: CategoriesComponent },

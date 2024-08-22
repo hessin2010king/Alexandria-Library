@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']); // Redirect to login if not authenticated
+      this.router.navigate(['/admin-login']); // Redirect to login if not authenticated
       return;
     }
     this.loadCategories();
@@ -183,7 +183,7 @@ export class AdminComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/admin-login']);
   }
 
   private handleError(error: any) {

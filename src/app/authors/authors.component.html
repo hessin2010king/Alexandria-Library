@@ -1,10 +1,12 @@
 <div class="container">
+  <h2>Authors List</h2>
   <div class="row">
-    <div class="col-md-4" *ngFor="let author of authors">
-      <div class="card bg-dark text-white mb-3">
+    <div class="col-md-4 mb-4" *ngFor="let author of authors">
+      <div class="card">
+        <img [src]="author.photo" class="card-img-top" alt="Author Image">
         <div class="card-body">
-          <h5 class="card-title">{{ author.name }}</h5>
-          <p class="card-text">{{ author.bio }}</p>
+          <h5 class="card-title">{{ author.firstName }} {{ author.lastName }}</h5>
+          <!-- Add more author details as needed -->
         </div>
       </div>
     </div>

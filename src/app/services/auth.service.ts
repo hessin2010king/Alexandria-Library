@@ -6,10 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  storeToken(token: any) {
-    throw new Error('Method not implemented.');
-  }
-  private apiUrl = 'http://localhost:4200/admin/login'; // Your API endpoint
+  private apiUrl = 'http://localhost:5000/admin/login';
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +15,10 @@ export class AuthService {
   }
 
   logout(): void {
-    // Clear local storage or any other logout-related tasks
-    localStorage.removeItem('token');
+    localStorage.removeItem('user'); // Clear user state
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user'); // Check if user is logged in
   }
 }

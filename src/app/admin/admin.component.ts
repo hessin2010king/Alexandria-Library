@@ -34,6 +34,10 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']); // Redirect to login if not authenticated
+      return;
+    }
     this.loadCategories();
     this.loadAuthors();
     this.loadBooks();

@@ -11,20 +11,18 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BooksComponent } from './books/books.component';
 
-
 export const routes: Routes = [
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  //{ path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'authors', component: AuthorsComponent },
+  { path: 'books', component: BooksComponent },
   { path: 'terms-conditions', component: TermsConditionsComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'books', component: BooksComponent },
-
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
@@ -32,5 +30,3 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-

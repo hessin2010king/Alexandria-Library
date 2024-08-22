@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule] // No need to import HttpClientModule here
+  imports: [CommonModule, FormsModule] // Import CommonModule and FormsModule
 })
 export class LoginComponent {
   username: string = '';
@@ -21,7 +21,8 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       (response: any) => {
         if (response.success && response.role === 'admin') {
-          // No token management needed
+          // Optionally store the user information if needed
+          localStorage.setItem('user', JSON.stringify(response.user));
           this.router.navigate(['/admin']);  // Redirect to admin page
         } else {
           alert('Invalid credentials or unauthorized access');

@@ -12,9 +12,13 @@ export interface Author {
 }
 
 export interface Book {
+  categoryName?: string; // Optional field for category name
+  authorName?: string;  // Optional field for author name
+
   id: number;
   photo: string;
   name: string;
   categoryId: number;
   authorId: number;
+  
 }

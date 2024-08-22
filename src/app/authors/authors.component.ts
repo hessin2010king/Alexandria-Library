@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthorService } from '../services/author.service';
 import { Author } from '../models';
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-authors',
@@ -13,7 +14,7 @@ import { Author } from '../models';
 export class AuthorsComponent implements OnInit {
   authors: Author[] = [];
 
-  constructor(private authorService: AuthorService) {}
+  constructor(private authorService: AuthorService, private router: Router) {}
 
   ngOnInit() {
     this.loadAuthors();
@@ -23,5 +24,9 @@ export class AuthorsComponent implements OnInit {
     this.authorService.getAuthors().subscribe(data => {
       this.authors = data;
     });
+  }
+
+  viewAuthorDetails(authorId: number) {
+    this.router.navigate(['/author-details', authorId]);
   }
 }

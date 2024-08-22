@@ -2,11 +2,10 @@
   <h2>Authors List</h2>
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let author of authors">
-      <div class="card">
+      <div class="card" (click)="viewAuthorDetails(author.id)">
         <img [src]="author.photo" class="card-img-top" alt="Author Image">
         <div class="card-body">
           <h5 class="card-title">{{ author.firstName }} {{ author.lastName }}</h5>
-          <!-- Add more author details as needed -->
         </div>
       </div>
     </div>

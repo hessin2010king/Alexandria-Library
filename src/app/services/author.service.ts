@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Author } from '../models';
+import { Author, Book } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +29,9 @@ export class AuthorService {
 
   getPopularAuthors(): Observable<Author[]> {
     return this.http.get<Author[]>(`${this.apiUrl}/popular`);
+  }
+
+  getBooksByAuthor(authorId: number): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.apiUrl}/${authorId}/books`);
   }
 }

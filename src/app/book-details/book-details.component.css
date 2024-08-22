@@ -1,0 +1,94 @@
+.book-details-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #2a2d34;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.book-info {
+  display: flex;
+  gap: 20px;
+}
+
+.book-image {
+  max-width: 150px;
+  flex-shrink: 0;
+}
+
+.book-meta {
+  flex-grow: 1;
+}
+
+.book-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.book-author,
+.book-category {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.book-author a,
+.book-category a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.book-author a:hover,
+.book-category a:hover {
+  text-decoration: underline;
+}
+
+.book-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stars {
+  margin-right: 10px;
+}
+
+.book-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.book-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.book-reviews {
+  margin-top: 30px;
+}
+
+.book-reviews h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.book-rating-stars {
+  font-size: 24px;
+  color: gold;
+}
+
+.dropdown-menu {
+  background-color: #1e90ff;
+  border-radius: 5px;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #1c7ed6;
+  color: #fff;
+}

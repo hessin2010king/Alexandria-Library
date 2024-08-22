@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { CategoryService } from '../services/category.service';
 import { AuthorService } from '../services/author.service';
@@ -17,7 +19,7 @@ import { EditModalComponent } from '../shared/edit-modal/edit-modal.component';
   standalone: true,
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  imports: [CommonModule, FormsModule, EditModalComponent]
+  imports: [CommonModule, FormsModule, EditModalComponent, NgbModalModule]
 })
 export class AdminComponent implements OnInit {
   categories: Category[] = [];

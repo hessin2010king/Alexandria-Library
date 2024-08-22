@@ -1,1 +1,22 @@
-<p>hellloooooo</p>
+<div class="container">
+  <h2>Categories List</h2>
+  <div class="mb-3">
+    <label for="categorySelect" class="form-label">Select Category</label>
+    <select id="categorySelect" class="form-select">
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <!-- Your existing code to display categories goes here -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let category of categories">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ category.name }}</h5>
+          <!-- Add more category details as needed -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

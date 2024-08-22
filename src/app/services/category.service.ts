@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category } from '../models';
+import { Category, Book } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +29,9 @@ export class CategoryService {
 
   getPopularCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}/popular`);
+  }
+
+  getBooksByCategory(categoryId: number): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.apiUrl}/${categoryId}/books`);
   }
 }

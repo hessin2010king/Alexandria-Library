@@ -77,7 +77,7 @@ export class AdminComponent implements OnInit {
   }
 
   addBook() {
-    const newBook: Book = { id: 0, photo: '', name: '', categoryId: 0, authorId: 0 ,description: ''  };
+    const newBook: Book = { id: 0, bookPhoto: '', bookName: '', categoryId: 0, authorId: 0 ,bookDescription: ''  };
     this.editBook(newBook);
   }
 
@@ -134,7 +134,7 @@ export class AdminComponent implements OnInit {
   editBook(book: Book) {
     const modalRef = this.modalService.open(EditModalComponent);
     modalRef.componentInstance.item = { ...book };
-    modalRef.componentInstance.fields = ['photo', 'name', 'categoryId', 'authorId'];
+    modalRef.componentInstance.fields = ['bookPhoto', 'bookName', 'categoryId', 'authorId'];
     modalRef.componentInstance.title = 'Edit Book';
 
     modalRef.componentInstance.save.subscribe((updatedBook: Book) => {

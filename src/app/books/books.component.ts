@@ -30,6 +30,7 @@ export class BooksComponent implements OnInit {
   loadBooks() {
     this.bookService.getBooksWithDetails().subscribe(data => {
       this.books = data;
+      console.log(data)
     });
   }
   viewBookDetails(bookId: number) {

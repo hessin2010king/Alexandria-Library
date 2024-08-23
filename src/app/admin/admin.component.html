@@ -149,8 +149,8 @@
         <tbody>
           <tr *ngFor="let book of books">
             <td>{{ book.id }}</td>
-            <td><img [src]="book.photo" alt="Book Photo" width="50" /></td>
-            <td>{{ book.name }}</td>
+            <td><img [src]="book.bookPhoto" alt="Book Photo" width="50" /></td>
+            <td>{{ book.bookName }}</td>
             <td>{{ getCategoryNameById(book.categoryId) }}</td>
             <td>{{ getAuthorNameById(book.authorId) }}</td>
             <td>

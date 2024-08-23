@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
+
 import { Book, Category, Author, Review } from '../models';
 
 @Injectable({
@@ -39,46 +40,34 @@ export class BookService {
   }
 
   getBooksWithDetails(): Observable<Book[]> {
-    return forkJoin([
-      this.getBooks(),
-      this.http.get<Category[]>(this.categoriesApiUrl),
-      this.http.get<Author[]>(this.authorsApiUrl)
-    ]).pipe(
-      map(([books, categories, authors]) => {
-        return books.map(book => ({
-          ...book,
-          categoryName: categories.find(c => c.id === book.categoryId)?.name || 'Unknown',
-          authorName: authors.find(a => a.id === book.authorId)?.firstName + ' ' + (authors.find(a => a.id === book.authorId)?.lastName || '') || 'Unknown'
-        }));
-      })
+    return this.http.get<Book[]>(this.booksApiUrl).pipe(
+      switchMap(books => 
+        this.http.get<Category[]>(this.categoriesApiUrl).pipe(
+          switchMap(categories => 
+            this.http.get<Author[]>(this.authorsApiUrl).pipe(
+              map(authors => 
+                books.map(book => ({
+                  ...book,
+                  categoryName: categories.find(c => c.id === book.categoryId)?.name || 'Unknown',
+                  authorName: authors.find(a => a.id === book.authorId)?.firstName + ' ' + (authors.find(a => a.id === book.authorId)?.lastName || '') || 'Unknown'
+                }))
+              )
+            )
+          )
+        )
+      )
     );
   }
 
   getBookById(id: number): Observable<Book> {
-    return forkJoin([
-      this.http.get<Book>(`${this.booksApiUrl}/${id}`),
-      this.http.get<Category[]>(this.categoriesApiUrl),
-      this.http.get<Author[]>(this.authorsApiUrl)
-    ]).pipe(
-      map(([book, categories, authors]) => {
+    return this.http.get<Book>(`${this.booksApiUrl}/${id}`).pipe(
+      map(book => {
         return {
           ...book,
-          categoryName: categories.find(c => c.id === book.categoryId)?.name || 'Unknown',
-          authorName: authors.find(a => a.id === book.authorId)?.firstName + ' ' + (authors.find(a => a.id === book.authorId)?.lastName || '') || 'Unknown'
+          // No need to map categoryName and authorName here if already included in the response
         };
       })
     );
   }
-
-
-
-  // Public methods for getting category and author names
-  getCategoryName(categoryId: number, categories: Category[]): string {
-    return categories.find(c => c.id === categoryId)?.name || 'Unknown';
-  }
-
-  getAuthorName(authorId: number, authors: Author[]): string {
-    const author = authors.find(a => a.id === authorId);
-    return author ? `${author.firstName} ${author.lastName || ''}` : 'Unknown';
-  }
+  
 }

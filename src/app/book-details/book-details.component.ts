@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../services/book.service';
 import { Book, Review } from '../models';
@@ -17,34 +17,33 @@ export class BookDetailsComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
+
   ) {}
 
   ngOnInit() {
+    console.log('BookDetailsComponent initialized');
+
     this.loadBookDetails();
   }
 
   loadBookDetails(): void {
     const bookId = +this.route.snapshot.paramMap.get('id')!;
-    this.bookService.getBookById(bookId).subscribe(
-      data => {
-        console.log('Book data:', data);  // Add this line
-
-        this.book = data;
-        this.loadReviews(bookId);
-      },
-    );
+    this.bookService.getBookById(bookId).subscribe(book => {
+      this.book = book;
+      this.loadReviews(bookId);
+    });
   }
+  
 
   loadReviews(bookId: number): void {
-    this.bookService.getReviews(bookId).subscribe(
-      reviews => this.reviews = reviews,
-    );
+    this.bookService.getReviews(bookId).subscribe(reviews => {
+      this.reviews = reviews;
+    });
   }
 
   getStars(rating: number): string {
     return '⭐'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating));
   }
-
-  
 }

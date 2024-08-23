@@ -1,12 +1,12 @@
 <div class="book-details-container">
   <div class="book-info">
     <div class="book-image">
-      <img [src]="book.photo || 'path_to_placeholder_image'" alt="Book Image" class="img-fluid" />
+      <img [src]="book.bookPhoto " alt="Book Image" class="img-fluid" />
     </div>
     <div class="book-meta">
-      <h1 class="book-title">{{ book.name }}</h1>
-      <p class="book-author"><a href="#">{{ book.authorName }}</a></p>
-      <p class="book-category"><a href="#">{{ book.categoryName }}</a></p>
+      <p class="book-title">Name : {{ book.bookName }}</p>
+      <p class="book-author">Author Name : {{ book.authorName}}</p>
+      <p class="book-category">Category Name :{{ book.categoryName}}</p>
       <div class="book-rating">
         <span class="stars">{{ getStars(book.averageRating || 0) }}</span>
         <span class="rating-value">
@@ -22,14 +22,12 @@
           <li><a class="dropdown-item" href="#">Currently Reading</a></li>
           <li><a class="dropdown-item" href="#">Read</a></li>
         </ul>
-        <div class="book-rating-stars">
-          {{ getStars(5) }}
-        </div>
       </div>
-      <div class="book-description">
-        <p>{{ book.description }}</p>
-      </div>
+     
     </div>
+  </div>
+  <div class="book-description">
+    <p>Description : {{ book.bookDescription || 'No description available' }}</p>
   </div>
   <div class="book-reviews">
     <h2>Reviews</h2>

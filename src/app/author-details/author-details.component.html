@@ -6,9 +6,9 @@
     <div *ngIf="books.length > 0" class="row">
       <div class="col-md-4 mb-4" *ngFor="let book of books">
         <div class="card">
-          <img [src]="book.photo" class="card-img-top" alt="Book Image">
+          <img [src]="book.bookPhoto" class="card-img-top" alt="Book Image">
           <div class="card-body">
-            <h5 class="card-title">{{ book.name }}</h5>
+            <h5 class="card-title">{{ book.bookName }}</h5>
             <p class="card-text">Category: {{ book.categoryName }}</p>            <p class="card-text">Author: {{ book.authorName }}</p>
 
           </div>

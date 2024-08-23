@@ -13,9 +13,9 @@ export interface Author {
 
 export interface Book {
   id: number;
-  name: string;
-  photo: string;
-  description: string;
+  bookName: string;
+  bookPhoto: string;
+  bookDescription: string;
   authorId: number;
   categoryId: number;
   categoryName?: string; // Optional field for category name
@@ -23,6 +23,7 @@ export interface Book {
   averageRating?: number; // Optional field for average rating
   reviewCount?: number; // Optional field for review count
 }
+
 
 export interface Review {
   id: number;

@@ -16,11 +16,11 @@ footer nav a {
 p{
   text-align: center;
   padding: 10px 0;
-  border-top: 1px solid #ddd;
-  background-color: #f8f9fa;
+  background-color: var(--highlight-color);
   margin-bottom: -20px;
-  color: var(--primary-color);
+  color: white;
 }
 footer div nav{
-  border-radius: 10px 10px 0 0;
+  border-radius: 20px 20px 0 0;
+  margin: 0 20px;
 }

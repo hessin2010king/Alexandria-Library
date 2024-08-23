@@ -1,17 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #212a3d;
+  --secondary-color: #272727;
+  --accent-color: #473a26c4;
+  --highlight-color: #5e2129;
+  --dark-color: #3d292a;
+}
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1d1d1d;
-  color: #333;
+  background-color: var(--accent-color);
+  color: var(--accent-color);
+  /* background-image: url(app/assets/images/Untitled.webp);
+  background-size: 60%; */
+
+}
+body, h1, h2, h3, p, span, a, li, input, button, input
+{
+  font-family: "Patrick Hand", cursive !important;
+  font-weight: 600 !important;
+  color: white;
+  text-align: start;
 }
 .card {
   transition: transform 0.2s;
-  background-color: #333;
+  background-color: var(--primary-color);
   color: white;
+  border-radius: 20px;
+  border: 1px solid var(--highlight-color);
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
 }
-
 .card:hover {
   transform: scale(1.05);
 }
@@ -19,4 +39,15 @@ body {
 .card-img-top {
   height: 200px;
   object-fit: cover;
+  border-radius: 50%;
+}
+button{
+  border-radius: 5px;
+  padding: 7px 27px;
+  color: white;
+  background-color: var(--accent-color);
+}
+button:hover{
+  background-color: var(--highlight-color);
+  transition: 0.5s;
 }

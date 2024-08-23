@@ -2,24 +2,35 @@
   <nav *ngIf="!isLoggedIn">
     <p>Already Registered?</p>
     <form (ngSubmit)="onLogin()">
-      <input type="text" [(ngModel)]="username" name="username" placeholder="Enter Your Username" required />
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Enter Your Password" required />
+      <input
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        placeholder="Enter Your Username"
+        required
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Enter Your Password"
+        required
+      />
       <button type="submit">Log In</button>
     </form>
-   
-    
   </nav>
   <div *ngIf="isLoggedIn">
     <section>
       <button (click)="navigateToProfile()">Profile</button>
       <button (click)="logout()">Logout</button>
     </section>
-  </div> 
-  <br />
-  <h1>Welcome To Good Reads</h1>
+  </div>
+  <div class="title-img">
+    <h1>Welcome To Good Reads</h1>
+  </div>
 </header>
 
-<main >
+<main>
   <section class="popular">
     <div class="popular-box">
       <div class="authors">
@@ -49,7 +60,7 @@
     </div>
   </section>
 
-  <aside *ngIf="!isLoggedIn" >
+  <aside *ngIf="!isLoggedIn">
     <h2>New here? Create a free account!</h2>
     <form>
       <input type="text" placeholder="Enter Your First Name" />
@@ -62,4 +73,3 @@
     </form>
   </aside>
 </main>
-

@@ -1,14 +1,16 @@
 header {
-  background-color: #333;
+  background-color: var(--highlight-color);
   color: #fff;
   padding: 1em 0;
   border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.575);
+  margin: 0 10px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 nav ul li {
@@ -18,10 +20,13 @@ nav ul li {
 nav ul li a {
   color: #fff;
   text-decoration: none;
-  padding: 0.5em 1em;
+  padding: 0.5em 3em;
   display: block;
+  font-size: larger;
 }
 
 nav ul li a:hover {
-  background-color: #555;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  transition: .8s;
 }

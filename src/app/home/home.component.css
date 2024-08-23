@@ -2,13 +2,14 @@ header nav {
   display: flex;
   justify-content: end;
   align-items: center;
-  background-color: #333;
+  background-color: var(--primary-color);
   color: white;
   padding: 10px;
-  border-radius: 20px;
-  margin-top: 1px;
+  border-radius: 0 0 20px 20px;
+  margin: 1px -15px 0 0;
   width: fit-content;
   margin-left: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.575);
 }
 
 header nav p {
@@ -16,7 +17,23 @@ header nav p {
   font-size: large;
   margin: 0 20px;
 }
-
+.title-img{
+  display: flex;
+  align-items: end;
+  min-height: 400px;
+  background-image: url(https://t3.ftcdn.net/jpg/07/40/49/86/360_F_740498675_9E7SSipPBwDYJ5wnDhu24hPYX1zdra7Q.jpg);
+  position: relative;
+  background-attachment: scroll;
+  background-size: contain;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: -90px;
+  z-index: -1;
+}
+li, a {
+  text-decoration: none;
+  margin: 5px;
+}
 main {
   display: flex;
   justify-content: space-between;
@@ -25,10 +42,15 @@ main {
 }
 main aside{
   height: fit-content;
+  top: -300px;
+  position: relative;
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.575);
 }
 
 header h1{
   color:#f4f4f4;
+  text-shadow: 1 4px 8px rgba(0, 0, 0, 0.938);
 }
 .popular{
   display: flex;
@@ -46,14 +68,17 @@ header h1{
   margin-bottom: 20px;
 }
 .popular-box div {
-  border: 1px solid #474646;
+  border: 1px solid var(--highlight-color);
   padding: 5px;
   margin: 5px;
   min-width: 31%;
+  border-radius: 10px;
 }
 section h2{
   color:#f4f4f4;
   font-size: x-large;
+  text-align: center;
+  padding: 10px;
 }
 
 .tabs {
@@ -95,36 +120,34 @@ aside {
   background-color: #333;
   padding: 20px;
   border-radius: 10px;
-  padding: 20px;
 }
 form{
   overflow: hidden;
+
 }
-input{
-  background-color: #333;
+aside form input{
+  background-color: #3333333f;
   padding: 4px;
   color: white;
   margin: 5px;
   border-radius: 5px;
+  min-width: 100%;
+  outline: none;
 }
-form button, nav button{
-  border-radius: 5px;
-  padding: 5px;
-  color: white;
-  background-color: #222222;
-}
+
 
 footer {
   display: flex;
   justify-content: center;
   padding: 10px;
   background-color: #333;
-  color: white;
+  color: rgb(66, 6, 6);
   margin-top: 20px;
 }
 
 footer nav a {
-  color: white;
+  color: rgb(73, 14, 14);
   text-decoration: none;
   margin: 0 10px;
 }
+

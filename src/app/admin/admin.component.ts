@@ -77,7 +77,7 @@ export class AdminComponent implements OnInit {
   }
 
   addBook() {
-    const newBook: Book = { id: 0, photo: '', name: '', categoryId: 0, authorId: 0 };
+    const newBook: Book = { id: 0, photo: '', name: '', categoryId: 0, authorId: 0 ,description: ''  };
     this.editBook(newBook);
   }
 

@@ -9,7 +9,8 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
 import { BooksComponent } from './books/books.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { AuthorDetailsComponent } from './author-details/author-details.component';
-import { UserProfileComponent } from './user-profile/user-profile.component'; // Import UserProfileComponent
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BookDetailsComponent } from './book-details/book-details.component'; // Import BookDetailsComponent
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,9 +20,10 @@ export const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'category-details/:id', component: CategoryDetailsComponent },
   { path: 'author-details/:id', component: AuthorDetailsComponent },
-  { path: 'user-profile', component: UserProfileComponent }, // Add route for UserProfileComponent
+  { path: 'user-profile', component: UserProfileComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'books', component: BooksComponent },
+  { path: 'book-details/:id', component: BookDetailsComponent }, // Add route for BookDetailsComponent
   { path: 'terms-conditions', component: TermsConditionsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }

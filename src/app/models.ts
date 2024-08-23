@@ -12,13 +12,22 @@ export interface Author {
 }
 
 export interface Book {
+  id: number;
+  name: string;
+  photo: string;
+  description: string;
+  authorId: number;
+  categoryId: number;
   categoryName?: string; // Optional field for category name
   authorName?: string;  // Optional field for author name
+  averageRating?: number; // Optional field for average rating
+  reviewCount?: number; // Optional field for review count
+}
 
+export interface Review {
   id: number;
-  photo: string;
-  name: string;
-  categoryId: number;
-  authorId: number;
-  
+  bookId: number;
+  reviewText: string;
+  rating: number;
+  stars: number;
 }

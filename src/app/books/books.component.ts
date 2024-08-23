@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookService } from '../services/book.service';
 import { Book } from '../models';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-books',
@@ -14,7 +16,12 @@ import { Book } from '../models';
 export class BooksComponent implements OnInit {
   books: Book[] = [];
 
-  constructor(private bookService: BookService, private modalService: NgbModal) {}
+  constructor(
+    private bookService: BookService, 
+    private modalService: NgbModal,
+    private router: Router
+
+  ) {}
 
   ngOnInit() {
     this.loadBooks();
@@ -24,5 +31,8 @@ export class BooksComponent implements OnInit {
     this.bookService.getBooksWithDetails().subscribe(data => {
       this.books = data;
     });
+  }
+  viewBookDetails(bookId: number) {
+    this.router.navigate(['/book-details', bookId]);
   }
 }

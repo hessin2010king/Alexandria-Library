@@ -1,8 +1,8 @@
 // src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { routes } from './app/app.routes'; // Import the routes from app.routes.ts
+import { routes } from './app-routing'; // Ensure this is correct
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { importProvidersFrom } from '@angular/core';
 

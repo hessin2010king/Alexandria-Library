@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
@@ -6,7 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
-import { BooksComponent } from './books/books.component';
+import { BooksComponent } from '../books/books.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { AuthorDetailsComponent } from './author-details/author-details.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';

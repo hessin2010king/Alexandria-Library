@@ -6,14 +6,11 @@ import { routes } from './app-routing'; // Ensure this is correct
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { importProvidersFrom } from '@angular/core';
 
-const appConfig = {
+bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
-      RouterModule.forRoot(routes), // Register the routes here
+      RouterModule.forRoot(routes), // Use routes here
       HttpClientModule
     )
   ]
-};
-
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+}).catch((err) => console.error(err));

@@ -1,0 +1,13 @@
+{
+  "routes": [
+    "/about",
+    "/admin",
+    "/authors",
+    "/books",
+    "/categories",
+    "/home",
+    "/login",
+    "/terms-conditions",
+    "/user-profile"
+  ]
+}

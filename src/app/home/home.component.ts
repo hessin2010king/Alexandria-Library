@@ -32,8 +32,14 @@ export class HomeComponent implements OnInit {
   books: any[] = [];
   categories: any[] = [];
   currentTab: string = 'books-list'; // Default tab
-  username: string = ''; // Bind username
-  password: string = ''; // Bind password
+  username: string = ''; // Bind username for login
+  password: string = ''; // Bind password for login
+  signupUsername: string = ''; // Bind username for signup
+  firstName: string = ''; // Bind first name for signup
+  lastName: string = ''; // Bind last name for signup
+  email: string = ''; // Bind email for signup
+  signupPassword: string = ''; // Bind password for signup
+  confirmPassword: string = ''; // Bind confirm password for signup
   isLoggedIn: boolean = false; // Track login status
 
   constructor(
@@ -69,7 +75,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  setTab(tab: string) {
+  setTab(tab: string): void {
     this.currentTab = tab;
   }
 
@@ -86,6 +92,33 @@ export class HomeComponent implements OnInit {
       (error: any) => {
         console.error('Login error:', error); // Log error
         alert('Login failed'); // Show error message
+      }
+    );
+  }
+
+  onSignup(): void {
+    if (this.signupPassword !== this.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    this.authService.userSignup(this.signupUsername, this.signupPassword, this.firstName, this.lastName, this.email).subscribe(
+      (response: any) => {
+        if (response.success) {
+          alert('Signup successful! Please log in.');
+          this.signupUsername = ''; // Clear form fields
+          this.firstName = ''; // Clear form fields
+          this.lastName = ''; // Clear form fields
+          this.email = ''; // Clear form fields
+          this.signupPassword = ''; // Clear form fields
+          this.confirmPassword = ''; // Clear form fields
+        } else {
+          alert(response.error || 'Signup failed');
+        }
+      },
+      (error: any) => {
+        console.error('Signup error:', error);
+        alert('Signup failed');
       }
     );
   }

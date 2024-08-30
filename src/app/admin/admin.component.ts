@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 import { CategoryService } from '../services/category.service';
 import { AuthorService } from '../services/author.service';
@@ -68,93 +66,96 @@ export class AdminComponent implements OnInit {
 
   addCategory() {
     const newCategory: Category = { id: 0, name: '' };
-    this.editCategory(newCategory);
+    this.openEditModal(newCategory, 'Category', ['name']);
   }
 
   addAuthor() {
     const newAuthor: Author = { id: 0, photo: '', firstName: '', lastName: '', dateOfBirth: '' };
-    this.editAuthor(newAuthor);
+    this.openEditModal(newAuthor, 'Author', ['photo', 'firstName', 'lastName', 'dateOfBirth']);
   }
 
   addBook() {
-    const newBook: Book = { id: 0, bookPhoto: '', bookName: '', categoryId: 0, authorId: 0 ,bookDescription: ''  };
-    this.editBook(newBook);
+    const newBook: Book = { id: 0, bookPhoto: '', bookName: '', categoryId: 0, authorId: 0, bookDescription: '' };
+    this.openEditModal(newBook, 'Book', ['bookPhoto', 'bookName', 'categoryId', 'authorId', 'bookDescription']);
   }
 
   editCategory(category: Category) {
-    const modalRef = this.modalService.open(EditModalComponent);
-    modalRef.componentInstance.item = { ...category };
-    modalRef.componentInstance.fields = ['name'];
-    modalRef.componentInstance.title = 'Edit Category';
-
-    modalRef.componentInstance.save.subscribe((updatedCategory: Category) => {
-      if (updatedCategory.id === 0) {
-        this.categoryService.addCategory(updatedCategory.name).subscribe(
-          () => this.loadCategories(),
-          (error) => this.handleError(error)
-        );
-      } else {
-        this.categoryService.updateCategory(updatedCategory.id, updatedCategory.name).subscribe(
-          () => this.loadCategories(),
-          (error) => this.handleError(error)
-        );
-      }
-    });
-
-    modalRef.componentInstance.close.subscribe(() => {
-      modalRef.close();
-    });
+    this.openEditModal(category, 'Category', ['name']);
   }
 
   editAuthor(author: Author) {
-    const modalRef = this.modalService.open(EditModalComponent);
-    modalRef.componentInstance.item = { ...author };
-    modalRef.componentInstance.fields = ['photo', 'firstName', 'lastName', 'dateOfBirth'];
-    modalRef.componentInstance.title = 'Edit Author';
-
-    modalRef.componentInstance.save.subscribe((updatedAuthor: Author) => {
-      if (updatedAuthor.id === 0) {
-        this.authorService.addAuthor(updatedAuthor).subscribe(
-          () => this.loadAuthors(),
-          (error) => this.handleError(error)
-        );
-      } else {
-        this.authorService.updateAuthor(updatedAuthor.id, updatedAuthor).subscribe(
-          () => this.loadAuthors(),
-          (error) => this.handleError(error)
-        );
-      }
-    });
-
-    modalRef.componentInstance.close.subscribe(() => {
-      modalRef.close();
-    });
+    this.openEditModal(author, 'Author', ['photo', 'firstName', 'lastName', 'dateOfBirth']);
   }
 
   editBook(book: Book) {
-    const modalRef = this.modalService.open(EditModalComponent);
-    modalRef.componentInstance.item = { ...book };
-    modalRef.componentInstance.fields = ['bookPhoto', 'bookName', 'categoryId', 'authorId'];
-    modalRef.componentInstance.title = 'Edit Book';
+    this.openEditModal(book, 'Book', ['bookPhoto', 'bookName', 'categoryId', 'authorId', 'bookDescription']);
+  }
 
-    modalRef.componentInstance.save.subscribe((updatedBook: Book) => {
-      if (updatedBook.id === 0) {
-        this.bookService.addBook(updatedBook).subscribe(
-          () => this.loadBooks(),
-          (error) => this.handleError(error)
-        );
-      } else {
-        this.bookService.updateBook(updatedBook.id, updatedBook).subscribe(
-          () => this.loadBooks(),
-          (error) => this.handleError(error)
-        );
-      }
+  private openEditModal(item: any, type: string, fields: string[]) {
+    const modalRef = this.modalService.open(EditModalComponent);
+    modalRef.componentInstance.item = { ...item };
+    modalRef.componentInstance.fields = fields;
+    modalRef.componentInstance.title = `Edit ${type}`;
+
+    modalRef.componentInstance.save.subscribe((updatedItem: any) => {
+      this.saveUpdatedItem(updatedItem, type);
+      modalRef.close();
     });
 
     modalRef.componentInstance.close.subscribe(() => {
       modalRef.close();
     });
   }
+
+  private saveUpdatedItem(updatedItem: any, type: string) {
+    switch (type) {
+      case 'Category':
+        if (updatedItem.id === 0) {
+          this.categoryService.addCategory(updatedItem.name).subscribe(
+            () => this.loadCategories(),
+            (error) => this.handleError(error)
+          );
+        } else {
+          this.categoryService.updateCategory(updatedItem.id, updatedItem.name).subscribe(
+            () => this.loadCategories(),
+            (error) => this.handleError(error)
+          );
+        }
+        break;
+      case 'Author':
+        if (updatedItem.id === 0) {
+          this.authorService.addAuthor(updatedItem).subscribe(
+            () => this.loadAuthors(),
+            (error) => this.handleError(error)
+          );
+        } else {
+          this.authorService.updateAuthor(updatedItem.id, {
+            photo: updatedItem.photo,
+            firstName: updatedItem.firstName,
+            lastName: updatedItem.lastName,
+            dateOfBirth: updatedItem.dateOfBirth
+          }).subscribe(
+            () => this.loadAuthors(),
+            (error) => this.handleError(error)
+          );
+        }
+        break;
+      case 'Book':
+        if (updatedItem.id === 0) {
+          this.bookService.addBook(updatedItem).subscribe(
+            () => this.loadBooks(),
+            (error) => this.handleError(error)
+          );
+        } else {
+          this.bookService.updateBook(updatedItem.id, updatedItem).subscribe(
+            () => this.loadBooks(),
+            (error) => this.handleError(error)
+          );
+        }
+        break;
+    }
+  }
+  
 
   deleteCategory(id: number) {
     if (confirm('Are you sure you want to delete this category?')) {

@@ -134,7 +134,15 @@ aside form input{
   min-width: 100%;
   outline: none;
 }
-
+nav form input{
+  background-color: #3333333f;
+  padding: 4px;
+  color: white;
+  margin: 5px;
+  border-radius: 5px;
+  /* min-width: 100%; */
+  outline: none;
+}
 
 footer {
   display: flex;

@@ -23,4 +23,24 @@ export class EditModalComponent {
   onClose() {
     this.close.emit();
   }
+
+  getLabel(field: string): string {
+    const labels: { [key: string]: string } = {
+      name: 'Name',
+      photo: 'Photo URL',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      dateOfBirth: 'Date of Birth',
+      bookPhoto: 'Book Photo URL',
+      bookName: 'Book Name',
+      categoryId: 'Category ID',
+      authorId: 'Author ID',
+      bookDescription: 'Book Description'
+    };
+    return labels[field] || field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+  }
+
+  getFieldType(field: string): string {
+    return field === 'dateOfBirth' ? 'date' : 'text';
+  }
 }

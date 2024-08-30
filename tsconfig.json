@@ -14,7 +14,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",  // Changed to "node"
     "importHelpers": true,
-    "target": "ES2020",          // Changed to a more stable version
+    "target": "ES2020",
+    "useDefineForClassFields": true,    // Changed to a more stable version
     "module": "ES2020",          // Changed to a more stable version
     "lib": [
       "ES2020",

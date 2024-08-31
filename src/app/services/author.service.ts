@@ -7,7 +7,7 @@ import { Author, Book } from '../models';
   providedIn: 'root',
 })
 export class AuthorService {
-  private apiUrl = 'http://localhost:5000/admin/authors';
+  private apiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/admin/categories/admin/authors';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { Category, Book } from '../models';
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiUrl = 'https://01ef-156-222-185-179.ngrok-free.app/admin/categories';
+  private apiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/admin/categories';
 
   constructor(private http: HttpClient) {}
 

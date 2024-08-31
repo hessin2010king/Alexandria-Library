@@ -9,9 +9,9 @@ import { Book, Category, Author, Review } from '../models';
   providedIn: 'root',
 })
 export class BookService {
-  private booksApiUrl = 'http://localhost:5000/admin/books';
-  private categoriesApiUrl = 'http://localhost:5000/admin/categories';
-  private authorsApiUrl = 'http://localhost:5000/admin/authors';
+  private booksApiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/admin/categories/admin/books';
+  private categoriesApiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/admin/categories/admin/categories';
+  private authorsApiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/admin/categories/admin/authors';
 
   constructor(private http: HttpClient) {}
 

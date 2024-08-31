@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private adminApiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/admin/login';
-  private userApiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/user/login'; // User login API URL
-  private userSignupApiUrl = 'https://08e2-156-222-185-179.ngrok-free.app/user/signup'; // User signup API URL
+  private adminApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/admin/login';
+  private userApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/user/login'; // User login API URL
+  private userSignupApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/user/signup'; // User signup API URL
 
   constructor(private http: HttpClient) {}
 

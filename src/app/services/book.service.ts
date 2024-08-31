@@ -36,7 +36,7 @@ export class BookService {
   }
 
   getReviews(bookId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`http://localhost:5000/admin/books/${bookId}/reviews`);
+    return this.http.get<Review[]>(`https://d617-156-222-185-179.ngrok-free.app/admin/books/${bookId}/reviews`);
   }
 
   getBooksWithDetails(): Observable<Book[]> {

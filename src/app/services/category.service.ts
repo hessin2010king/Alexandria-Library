@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Category, Book } from '../models';
 
 @Injectable({
@@ -12,7 +12,12 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.apiUrl);
+    return this.http.get<Category[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Error fetching categories:', error);
+        return throwError('Error fetching categories. Please try again later.');
+      })
+    );
   }
 
   addCategory(name: string): Observable<any> {

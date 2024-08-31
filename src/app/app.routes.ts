@@ -25,6 +25,6 @@ export const routes: Routes = [
   { path: 'books', component: BooksComponent },
   { path: 'book-details/:id', component: BookDetailsComponent }, // Add route for BookDetailsComponent
   { path: 'terms-conditions', component: TermsConditionsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
 ];

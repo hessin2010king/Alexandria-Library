@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment'; // Import the environment file
 
 import { Book, Category, Author, Review } from '../models';
 
@@ -9,9 +10,9 @@ import { Book, Category, Author, Review } from '../models';
   providedIn: 'root',
 })
 export class BookService {
-  private booksApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/admin/books';
-  private categoriesApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/admin/categories';
-  private authorsApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/admin/authors';
+  private booksApiUrl = `${environment.apiUrl}/admin/books`;
+  private categoriesApiUrl = `${environment.apiUrl}/admin/categories`;
+  private authorsApiUrl = `${environment.apiUrl}/admin/authors`;
 
   constructor(private http: HttpClient) {}
 
@@ -36,7 +37,7 @@ export class BookService {
   }
 
   getReviews(bookId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`https://d617-156-222-185-179.ngrok-free.app/admin/books/${bookId}/reviews`);
+    return this.http.get<Review[]>(`${environment.apiUrl}/admin/books/${bookId}/reviews`);
   }
 
   getBooksWithDetails(): Observable<Book[]> {

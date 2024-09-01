@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Author, Book } from '../models';
+import { environment } from '../../environments/environment'; // Import the environment file
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorService {
-  private apiUrl = 'https://d617-156-222-185-179.ngrok-free.app/admin/authors';
+  private apiUrl = `${environment.apiUrl}/admin/authors`;
 
   constructor(private http: HttpClient) {}
 

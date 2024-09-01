@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // Import the environment file
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private adminApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/admin/login';
-  private userApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/user/login'; // User login API URL
-  private userSignupApiUrl = 'https://d617-156-222-185-179.ngrok-free.app/user/signup'; // User signup API URL
+  private adminApiUrl = `${environment.apiUrl}/admin/login`;
+  private userApiUrl = `${environment.apiUrl}/user/login`; // User login API URL
+  private userSignupApiUrl = `${environment.apiUrl}/user/signup`; // User signup API URL
 
   constructor(private http: HttpClient) {}
 
